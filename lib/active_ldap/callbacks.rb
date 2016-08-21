@@ -19,7 +19,9 @@ module ActiveLdap
       define_model_callbacks :save, :create, :update, :destroy
       
       class << self
-        alias_method_chain :instantiate, :callbacks
+        #alias_method_chain deprecated, prepend method not supported in < Ruby 2.0
+        alias instantiate_without_callbacks instantiate
+        alias instantiate instantiate_with_callbacks
       end
     end
 
